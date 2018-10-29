@@ -16,18 +16,17 @@ namespace SnakesNLadders
                 /////////////////////
                /* MY DATA MEMBERS */
               /////////////////////
-        private Player[] players = new Player[2];           // Array of players
-        private int turn;                                   // checks turn
-        private int[,] points = new int[56, 2];             // checks Row and col of Data grid
+        public Player[] players = new Player[2];           // Array of players
+        public int turn;                                   // checks turn
+        public int[,] points = new int[56, 2];             // checks Row and col of Data grid
         private Player[] savedPlayers = new Player[2];      // Save GAme Data
-        private int savedTurn;                              // turn at Game save time
         private int[] wins = new int[2];                    // records wins of players
-
+        private Game game;
   
         public Window1()
         {
             InitializeComponent();
-            
+            game = new Game(this);
         }
         public Window1(string s1,string s2)
         {
@@ -36,31 +35,7 @@ namespace SnakesNLadders
             players[1].name = s2;
 
         }
-        private void populatePositions()
-        {
-            int cell = 0;
-            for (int i = 6; i >= 0; i--)
-            {
-                if (i % 2 == 0)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        points[cell, 0] = i;
-                        points[cell, 1] = j;
-                        cell++;
-                    }
-                }
-                else
-                {
-                    for (int j = 7; j >= 0; j--)
-                    {
-                        points[cell, 0] = i;
-                        points[cell, 1] = j;
-                        cell++;
-                    }
-                }
-            }
-        }
+
         
         private Storyboard ResizeBox(float f, int num)
         {
@@ -100,9 +75,7 @@ namespace SnakesNLadders
         }
         public int RollDice()
         {
-            Random s = new Random(DateTime.Now.Millisecond);
-            int v = s.Next(1, 7);
-            dice.Content = v.ToString();
+            int v = game.GetRollDiceNum();
 
             BitmapImage j = new BitmapImage(new Uri(@"../../Images/dice" + v + ".png", UriKind.RelativeOrAbsolute));
             Box4.Fill = new ImageBrush(j);
@@ -116,7 +89,6 @@ namespace SnakesNLadders
             btnRoll.IsEnabled = false;
             int d = RollDice();
 
-            
            
             int pos = players[turn].position;
              
@@ -124,7 +96,7 @@ namespace SnakesNLadders
             {
                 if (pos + d < ((points.Length) / 2))
                 {
-                    MoveTurn(d, pos);
+                    game.MoveTurn(d, pos, turn);
                 }
                 else
                     MessageBox.Show(players[turn].name + " !!! You are not allowed to move this far...", "Warning !!!",MessageBoxButton.OK,MessageBoxImage.Error);
@@ -166,47 +138,10 @@ namespace SnakesNLadders
             p2score.Content = players[1].position.ToString();
             cplayer.Content = players[turn].name;
         }
-        public void MoveTurn(int d, int pos)
-        {
-            int j;
-            int[] snakeNladder = { 3, 9, 13, 25, 36, 46, 12, 20, 39, 44, 47, 54 };
 
-            for (j = d; j < d + pos + 1; j++)
-            {
-                Board.Children.Remove(players[turn].piece);
-                players[turn].piece.SetValue(Grid.RowProperty, points[j, 0]);
-                players[turn].piece.SetValue(Grid.ColumnProperty, points[j, 1]);
-                MoveBorder(j, turn);
-                Board.Children.Add(players[turn].piece);
-                //Thread.Sleep(500);
-            }
-            j--;
-            players[turn].position = j;            
-            if (snakeNladder.Contains(j))
-            {
-                int[] destination = { 10, 21, 31, 40, 51, 50, 2, 5, 22, 15, 30, 19 };
-                for (int i = 0; i < snakeNladder.Length; i++)
-                {
-                    if (j == snakeNladder[i])
-                    {
-                        //Thread.Sleep(500);
-                        Board.Children.Remove(players[turn].piece);
-                        players[turn].piece.SetValue(Grid.RowProperty, points[destination[i], 0]);
-                        players[turn].piece.SetValue(Grid.ColumnProperty, points[destination[i], 1]);
-                        players[turn].position = destination[i];
-                        MoveBorder(destination[i], turn);
-                        Board.Children.Add(players[turn].piece);
-                        //Thread.Sleep(500);
-                        break;
-                    }
-                }
-
-            }
-        }
         private void GameStart(object sender, EventArgs e)
         {
-
-            populatePositions();
+            game.populatePositions();
 
             lblwins.Content = "Wins 0 - 0";
 
@@ -226,22 +161,7 @@ namespace SnakesNLadders
             ResetGame(sender, e);
 
         }
-       public void MoveBorder(int pos,int t)
-       {
-            if(t==0){
-                Board.Children.Remove(p1border);
-                p1border.SetValue(Grid.RowProperty,points[pos,0]);
-                p1border.SetValue(Grid.ColumnProperty,points[pos,1]);
-                Board.Children.Add(p1border);
-            }
-            else
-            {
-                Board.Children.Remove(p2border);
-                p2border.SetValue(Grid.RowProperty, points[pos, 0]);
-                p2border.SetValue(Grid.ColumnProperty, points[pos, 1]);
-                Board.Children.Add(p2border);
-            }
-        }
+
         private void ResetGame(object sender, EventArgs e)
         {
             turn = 0;
@@ -263,7 +183,7 @@ namespace SnakesNLadders
                 players[i].piece.SetValue(Grid.ColumnProperty, points[0, 1]);
                 players[i].position = 0;
                 players[i].readytogo = false;
-                MoveBorder(0, i);
+                game.MoveBorder(0, i);
                 Board.Children.Add(players[i].piece);
             }    
         

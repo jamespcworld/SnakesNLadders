@@ -7,7 +7,7 @@ using System.Windows.Shapes;
 
 namespace SnakesNLadders
 {
-    struct Player
+    public struct Player
     {        
         public bool readytogo;
         public string name;
