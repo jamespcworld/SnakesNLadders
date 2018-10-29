@@ -1,0 +1,14 @@
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\SnakesNLaddersTests.deps.json
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\SnakesNLaddersTests.runtimeconfig.json
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\SnakesNLaddersTests.runtimeconfig.dev.json
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\SnakesNLaddersTests.dll
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\bin\Debug\netcoreapp2.1\SnakesNLaddersTests.pdb
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\obj\Debug\netcoreapp2.1\SnakesNLaddersTests.csprojAssemblyReference.cache
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\obj\Debug\netcoreapp2.1\SnakesNLaddersTests.csproj.CoreCompileInputs.cache
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\obj\Debug\netcoreapp2.1\SnakesNLaddersTests.AssemblyInfoInputs.cache
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\obj\Debug\netcoreapp2.1\SnakesNLaddersTests.AssemblyInfo.cs
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\obj\Debug\netcoreapp2.1\SnakesNLaddersTests.dll
+C:\Works\Dev\SnakesNLadders\tests\SnakesNLaddersTests\obj\Debug\netcoreapp2.1\SnakesNLaddersTests.pdb
